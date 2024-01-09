@@ -20,14 +20,39 @@
         define("PRICE_PER_SCOOP", 2.50);
         define("SALES_TAX_RATE", 0.11);
 
-            //echo raw variables from post array
+            //get data from post array
             echo "<pre>";
             echo var_dump($_POST);
             echo "</pre>";
 
-            $scoops = $_POST["scoops"];
-            $flavors = $_POST["flavor"];
-            $cone = $_POST["cone"];
+            if (!empty($_POST["scoops"]))
+            {
+                $scoops = $_POST["scoops"];
+            }
+            else
+            {
+                echo "<p>Enter scoops!</p>";
+                return;
+            }
+
+            if (isset($_POST["flavor"]))
+            {
+                $flavors = $_POST["flavor"];
+            }
+            else
+            {
+                echo "<p>Please select at least 1 flavor</p>";
+                return;
+            }
+
+            if(!empty($_POST["cone"]))
+            {
+                $cone = $_POST["cone"];
+            }
+            else
+            {
+                echo "<p>Please select a cone type.</p>";
+            }
 
             $flavorString = implode(", ", $flavors);
 
